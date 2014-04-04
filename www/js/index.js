@@ -1,49 +1,124 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+	Copyright 2013-2014, JUMA Technology
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+		http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+*/
+var serviceUniqueID = "";
+var interval_notify_index = "";
 var app = {
+	webview : null,
+	
     // Application Constructor
     initialize: function() {
-        this.bindEvents();
+        app.bindCordovaEvents();
+        setTimeout(function(){
+        	$.mobile.changePage("searched.html","slideup");
+        },1500);
     },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+    
+    bindCordovaEvents: function() {
+        document.addEventListener('bcready', app.onBCReady, false);
+		document.addEventListener('deviceconnected', app.onDeviceConnected, false);
+		document.addEventListener('devicedisconnected', app.onBluetoothDisconnect, false);
+		document.addEventListener('newdevice', app.addNewDevice, false);
     },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+    
+    device_page: function(deviceAddress){
+    	app.device = BC.bluetooth.devices[deviceAddress];
+		BC.Bluetooth.StopScan();
+		var URL = null;
+		if(deviceAddress == "78:C5:E5:99:26:54"){
+			URL = "file:///android_asset/bcautotest/index.html";
+		}else if(deviceAddress == "78:C5:E5:99:26:37"){
+			URL = "file:///android_asset/bcibeacon/index.html";
+		}else if(deviceAddress == "78:C5:E5:99:26:54"){
+			URL = "file:///android_asset/bcsocket/index.html";
+		}
+		if(URL !== null){
+			app.showLoader("Loading App...");
+			setTimeout(function(){
+				app.hideLoader();
+				var ref = window.open(URL, '_blank', 'location=yes');
+			},1000);
+		}
     },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+    
+    showLoader : function(message) {
+		$.mobile.loading('show', {
+			text: message, 
+			textVisible: true, 
+			theme: 'a',        
+			textonly: true,   
+			html: ""           
+		});
+	},
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+	hideLoader : function(){
+		$.mobile.loading('hide');
+	},
+    
+    startScan : function(){
+    	$('#spinner').attr("src","img/searching.png").addClass('img-responsive spinner').next().show();
+    	$('#spinner').attr("onclick","app.stopScan()");
+    	BC.Bluetooth.StartScan();
+    },
 
-        console.log('Received Event: ' + id);
-    }
+    addDevices : function(){
+        var deviceList = BC.bluetooth.devices;
+        if(deviceList){
+            for(var deviceKey in deviceList){
+                app.addNewDevice({"deviceAddress":deviceKey});
+            }
+        }
+        app.startScan();
+    },
+    
+    stopScan : function(){
+    	$('#spinner').attr("src","img/arrow.png").removeClass('spinner').next().hide();
+    	$('#spinner').attr("onclick","app.startScan()");
+    	BC.Bluetooth.StopScan();
+    },
+    
+    onBCReady: function() {
+		if(!BC.bluetooth.isopen){
+			if(API !== "ios"){
+				BC.Bluetooth.OpenBluetooth(function(){
+				});
+			}else{					
+				alert("Please open your bluetooth first.");
+			}
+		}
+    },
+	
+	addNewDevice: function(arg){
+		var deviceAddress = arg.deviceAddress;
+		var viewObj	= $("#user_view");
+		var liTplObj=$("#li_tpl").clone();
+		var newDevice = BC.bluetooth.devices[deviceAddress];
+		$(liTplObj).attr("onclick","app.device_page('"+newDevice.deviceAddress+"')");
+		liTplObj.show();
+		
+		for(var key in newDevice){
+			if(key == "isConnected"){
+				if(newDevice.isConnected){
+					$("[dbField='"+key+"']",liTplObj).html("YES");
+				}
+				$("[dbField='"+key+"']",liTplObj).html("NO");
+			}else{
+				$("[dbField='"+key+"']",liTplObj).html(newDevice[key]);
+			}
+		}
+		viewObj.append(liTplObj);
+	},
+
 };

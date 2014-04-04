@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<body>
+		
+		<style type="text/css">
+			img{
+				display: block;
+			}
+			#word{
+				position: relative;
+			}
+			.spinner {
+				z-index:9999;
+				text-indent: 250px;
+				white-space: nowrap;
+				overflow: hidden;
+				opacity:0;
+				-webkit-animation-name: spinnerRotate;
+				-webkit-animation-duration: 1.2s;
+				-webkit-animation-delay: 0.1s;
+				-webkit-animation-iteration-count: infinite;
+				-webkit-animation-timing-function: linear;
+				
+			}
+
+			@-webkit-keyframes spinnerRotate {
+				from {
+					opacity:1;
+					-webkit-transform:rotate(0deg);
+				}
+				to {
+					opacity:1;
+					-webkit-transform:rotate(360deg);
+				}
+			}
+		</style>
+		
+		<div class="container">
+				<div class="searched" id="switchScan">
+					<img id="spinner" style="display:block;" src="img/searching.png" class="img-responsive spinner" onclick="app.stopScan()">
+					<img id="word" src="img/word.png" class="img-responsive">
+					
+				</div>
+				
+				<div  id="user_view" class="row">
+				</div>
+				
+				<div style="display:none">
+					<ul id="li_tpl" style="overflow:hidden;">
+				  		<li class="dots"><div class="dot"></div></li>
+				  		<li class="content">
+							<ul onclick="app.next_page('aaaa','bbbb','cccc')">
+								<li><h3 dbField='deviceName'>Mokai</h3><li>
+								<li>Is Connected: <span dbField='isConnected'>YES</span></li>
+								<li>Device Address: <span dbField='deviceAddress'>902897712-1292716-129128</span></li>
+							</ul>
+						</li>
+				  		<li class="prev">
+							<img src="img/prev.png" class="img-responsive" >
+						</li>
+					</ul>
+				</div>
+		</div>
+		<script>
+			$(function(){
+				var spinner = sessionStorage.getItem("spinnerHeight");
+				$('#word').css('margin-top',-(spinner));
+				app.addDevices();
+			});
+		</script>
+	</body>
+</html>
