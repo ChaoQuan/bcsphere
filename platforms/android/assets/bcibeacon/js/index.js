@@ -46,10 +46,11 @@ var app = {
 	visitWebPage : function(ibeacon){
 		if(ibeacon.proximityUUID == ProximityUUID){
 			if(ibeacon.proximity >= 2 && app.webView !== null){
-				app.webView.close();
-				app.webView = null;
-			}else if(ibeacon.proximity == 1 && app.webView == null){
+				//app.webView.close();
+				//app.webView = null;
+			}else if(ibeacon.proximity == 1){
 				app.webView = window.open('http://www.bcsphere.net/portal.php?mod=topic&topicid=2', '_blank', 'location=yes');
+				//app.webView = window.open('http://www.bcsphere.org/bcsphere-core-android', '_blank', 'location=no');
 				//webView = window.open('http://www.bcsphere.org/bcmeeting.html', '_blank', 'location=no');
 			}
 		}

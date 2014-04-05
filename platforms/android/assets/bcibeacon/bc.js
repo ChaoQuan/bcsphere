@@ -830,7 +830,6 @@
 				isConnected = true;
 				fireBLEEvent("deviceconnected",deviceAddress);
 			}
-
 			if(isNewDevice(deviceAddress)){
 				if(!isEmpty(advertisementData.manufacturerData) && isIBeacon(advertisementData.manufacturerData) !== 0){
 					var manufacturerData = advertisementData.manufacturerData;
@@ -1035,6 +1034,7 @@
 			}
 			
 			var newproximity = -1;
+
 			if(this.accuracy < 0.5){
 				newproximity = 1;
 			}else if(this.accuracy > 0.5 && this.accuracy < 4){
