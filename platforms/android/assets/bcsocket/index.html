@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css">
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/bcstyle.css"/>
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.2.css"/>
+		<script src="js/jquery-1.7.1.min.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/jquery.mobile.min.js"></script>
+		<script src="cordova.js"></script>
+		<script type="text/javascript" charset="utf-8" src="underscore.js"></script>
+		<script src="bc.js"></script>
+		<script src="js/index.js"></script>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+			
+		<script>
+			window.onload = function(){
+				var spinner = document.getElementById("spinner").clientHeight;
+				sessionStorage.setItem("spinnerHeight",spinner);
+				//$('#word').css('margin-top',-(spinner));
+				$('#word').remove();
+			}
+		
+			$(function(){
+				width = $(window).width();
+				height = $(window).height();
+              
+				
+              if(width*(0.5) > 320){
+                $('#logo').css('left',width*(0.5)-320);
+              }else{
+               $('#logo').css('left',0);
+              }
+              $('#bcbutton').css('bottom',height*(0.25));
+				setTimeout(function(){
+					$('#logo').css('display','none');
+					$('#bcbutton').fadeIn(3000);
+				},2000);
+				
+				app.initialize();
+				
+				$("#bcclient").click(function(){
+                    $("#bcclient").css({"background":"rgb(227,125,30)"});
+                    $("#bcserver").css({"background":"none"});
+					$.mobile.changePage("searched.html","slideup");
+				});
+              
+                $("#bcserver").click(function(){
+                    $("#bcserver").css({"background":"rgb(227,125,30)"});
+                    $("#bcclient").css({"background":"none"});
+                    $.mobile.changePage("createSocket.html","slideup");
+                });
+				
+			});
+		</script>
+	</head>
+	<body>
+        
+		<style type="text/css">
+            
+			#word{
+				position: relative;
+			}
+        
+        .word{
+            z-index:-999;
+        }
+        
+        img{
+            display:block;
+        }
+        
+            </style>
+        
+		<div class="container">
+			<div id="word" class="searched word">
+				<img id="spinner" src="img/word1.png" class="img-responsive spinner">
+                    </div>
+			
+			<div class="container">
+				<img src="img/index.png" class="img-responsive"/>
+				<div id="logo"><img src="img/logo.png" class="img-responsive"/></div>
+				<div id="bcbutton" style="display:none;">
+					<div  id="bcclient" style="float:left;background-color: rgb(227,125,30);width:42%;font-size:0px;">
+                        <img style="display:block;margin:0px;border:0px;width:100%;height:100%;" src="img/client.png">
+                    </div>
+					<div id="bcserver" style="float:right;width:42%;margin-right:11%;font-size:0px;">
+                        <img style="display:block;margin:0px;border:0px;width:100%;height:100%;" src="img/service.png">
+                    </div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<div class="header"> 
+			<img src="img/back.png" id="back" class="img-responsive" onclick="app.goBackToIndex();">
+			<h1><div id="deviceName">bcsocket</div></h1>
+		</div>
+		
+		<div id="createSocket_panel" class="container">
+			<div id="createSocket_cont">
+                <h3>Bcsocket gatt service</h3>
+                <div class="info">
+                    <span><b>Service uuid:</b> ffe0</span>
+                    <span><b>Characteristic uuid:</b> ffe1</span>
+                    <span><b>Characteristic property:</b> writeWithoutResponse,notify,read</span>
+                </div>
+				
+				<div class="btn_panel">
+					<div id="createService">CreateService</div>
+					<div id="removeService" style="display:none;">RemoveService</div>
+				</div>
+
+            </div>
+		</div>
+
+		<script>
+			$(function(){
+				$('#createService').click(function(){
+					$('#createService').hide();
+					$('#removeService').show();
+                    app.createService();
+				});
+				$('#removeService').click(function(){
+					$('#removeService').hide();
+					$('#createService').show();
+                    app.removeService();
+				});
+               app.socketViewInit();
+			});
+		</script>
+	</body>
+</html>

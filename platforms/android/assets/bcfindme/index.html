@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css">
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/bcstyle.css"/>
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.2.min.css"/>
+		<script src="js/jquery-1.7.1.min.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/jquery.mobile.min.js"></script>
+		<script src="cordova.js"></script>
+		<script type="text/javascript" charset="utf-8" src="underscore.js"></script>
+		<script src="bc.js"></script>
+		<script src="js/index.js"></script>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+			
+		<script>
+			window.onload = function(){
+				var spinner = document.getElementById("spinner1").clientHeight;
+				sessionStorage.setItem("spinnerHeight",spinner);
+				$('#findWord').remove();
+				
+				var winHeight = $(window).height();
+				var winWidth = $('.container').width();
+				var center = $('.center_btn').offset();
+				var top = $("#doevent").height();
+				//alert(top);
+				var centerx = winWidth*0.5;
+				var centery = center.top+top*0.5-55;
+				
+				sessionStorage.setItem("winHeight",winHeight);
+				sessionStorage.setItem("winWidth",winWidth);
+				sessionStorage.setItem("centerx",centerx);
+				sessionStorage.setItem("centery",centery);
+				$('#findPoint').remove();
+			}
+		
+			$(function(){
+				app.initialize();
+				setTimeout(function(){
+					$.mobile.changePage("searched.html","slideup");
+				},2000);
+				
+			});
+		</script>
+	</head>
+	<body>
+	
+		<style type="text/css">
+
+			#word{
+				position: relative;
+			}
+			
+			.word{
+				z-index:-999;
+			}
+			
+			img{
+				display:block;
+			}
+			
+		</style>
+	
+		<div class="container">
+			<div id="findWord" class="searched word">
+				<img id="spinner1" src="img/word1.png" class="img-responsive spinner">
+			</div>
+			<div id="findPoint" class="content">
+				<div class="findme_word">
+					<p>Click To Find</p>
+					<h1>iPhone 5S</h1>
+				</div>
+				<div class="findme_pic">
+					<div class="arrow_down">
+						<img src="img/arrow_down1.png" class="img-responsive"/>
+						<img src="img/arrow_down2.png" class="img-responsive"/>
+						<img src="img/arrow_down3.png" class="img-responsive"/>
+					</div>
+					<div class="center_btn">
+						<div class="find_btn">
+							<div class="img-responsive img_border">
+								<img id="doevent" src="img/center_img.png" class="img-responsive circle center_img"/>
+							</div>
+						</div>
+					</div>
+					<div class="arrow_up" style="clear:both;">
+						<img src="img/arrow_up3.png" class="img-responsive"/>
+						<img src="img/arrow_up2.png" class="img-responsive"/>
+						<img src="img/arrow_up1.png" class="img-responsive"/>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<img src="img/index.png" class="img-responsive"/>
+			</div>
+		</div>
+	</body>
+</html>

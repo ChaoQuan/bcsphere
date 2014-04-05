@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<body>
+		
+		<style type="text/css">
+			img{
+				display: block;
+			}
+			#word{
+				position: relative;
+				z-index:-999;
+			}
+			.spinner {
+				z-index:9999;
+				text-indent: 250px;
+				white-space: nowrap;
+				overflow: hidden;
+				opacity:0;
+				-webkit-animation-name: spinnerRotate;
+				-webkit-animation-duration: 1.2s;
+				-webkit-animation-delay: 0.1s;
+				-webkit-animation-iteration-count: infinite;
+				-webkit-animation-timing-function: linear;
+				
+			}
+
+			@-webkit-keyframes spinnerRotate {
+				from {
+					opacity:1;
+					-webkit-transform:rotate(0deg);
+				}
+				to {
+					opacity:1;
+					-webkit-transform:rotate(360deg);
+				}
+			}
+		</style>
+		
+		<div class="container">              
+				<div class="searched">
+					<img id="spinner" style="display:block;" src="img/searching.png" class="img-responsive spinner" >
+					<img id="word" src="img/word.png" class="img-responsive">
+				</div>
+				
+				<div  id="user_view" class="row">
+				</div>
+				
+				<div style="display:none">
+					<ul id="li_tpl" style="overflow:hidden;">
+				  		<li class="dots"><div class="dot"></div></li>
+				  		<li class="device_content">
+							<ul>
+								<li><h3 dbField='deviceName'></h3><li>
+								<li>Is Connected: <span dbField='isConnected'></span></li>
+								<li>Device Address: <span dbField='deviceAddress'></span></li>
+							</ul>
+						</li>
+				  		<li class="prev">
+							<img src="img/prev.png" class="img-responsive" >
+						</li>
+					</ul>
+				</div>
+		</div>
+		<script>
+			$(function(){
+				var spinner = sessionStorage.getItem("spinnerHeight");
+				$('#word').css({'margin-top':-(spinner),'z-index':-999});
+				app.addStartDevice();
+			});
+		</script>
+	</body>
+</html>

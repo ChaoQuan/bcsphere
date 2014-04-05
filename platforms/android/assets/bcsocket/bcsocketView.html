@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="css/bcstyle.css"/>
+
+
+
+	<script src="js/jquery-1.7.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="cordova.js"></script>
+	<script type="text/javascript" charset="utf-8" src="underscore.js"></script>
+	<script src="bc.js"></script>
+	<script src="js/index.js"></script>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<style>  
+		div.ui-slider-switch { width: 7em }  
+	</style> 
+	</head>
+
+	<body>
+
+		<div class="header"> 
+			<img id="back" src="img/back.png" class="img-responsive" onclick="app.socketStop();">
+			<h1><div id="deviceName">bcsocket</div></h1>
+		</div>
+        <div class="navigation">
+                <div class='selectType' id="HexStyle">Hex</div>
+                <div class='typeBtn' id="UnicodeStyle">Unicode</div>
+                <div class='typeBtn' id="ASCIIStyle">ASCII</div>
+        </div>
+
+		<div class="container" id="socketData">
+            <div id="socketDataList">
+                <ul  id="socketList_view">
+                	
+                </ul>
+
+            </div>
+            <div>
+				 <ul  id="socketList_model">
+				     <li id="socketList_tpl" style="display:none">
+				         <p><h5 dbField='adate'>socketdate</h5><h5>:</h5><h5 dbField='avalue'>socketdata</h5><p>
+				     </li>
+				 </ul>
+            <div>
+		</div>
+		<div id="writeInput">
+	         <textarea rows="1" type="text" id="writeValue"/></textarea>
+	         <div id="writeOK" >Send</div>
+	    </div>
+		<script type="text/javascript">
+		$(function(){
+			$('.navigation div').click(function(){
+				$(this).attr('class','selectType').siblings('div').attr('class','typeBtn');
+                app.refreshList();
+			});
+          app.bcsocketViewInit();
+		}); 
+		</script>
+	</body>
+</html>

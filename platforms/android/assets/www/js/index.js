@@ -43,6 +43,8 @@ var app = {
 			URL = "../bcibeacon/index.html";
 		}else if(app.device.deviceName == "bcsocket"){
 			URL = "../bcsocket/index.html";
+		}else if(app.device.deviceName == "O-Click"){
+			URL = "../bcfindme/index.html";
 		}
 		if(URL !== null){
 			app.showLoader("Loading App...");

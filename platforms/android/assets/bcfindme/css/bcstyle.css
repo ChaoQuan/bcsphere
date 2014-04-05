@@ -1,0 +1,233 @@
+html, body, img,h3,p,h1{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background-color: #000;
+	background-image: url('../img/background.png');
+	background-repeat: no-repeat;
+	background-size: cover; 
+	background-attachment: fixed;
+}
+
+.container img{
+	margin: 0 auto;
+}
+
+#logo{
+	position:absolute;
+	bottom:60px;
+}
+
+
+#cartoon{
+ 	position: absolute;
+ 	top: 0;
+ 	left: 0;
+ }
+.container .searched{
+	margin: 0 auto;
+	margin-bottom:30px;
+	margin-top: 50px;
+	width: 70%;
+	height: 70%;
+}
+.container .row{
+	width: 100%;
+	margin: 0 auto;
+	margin-top:1em;
+	height: 70px;
+}
+.container .row .dots{
+	width:2%;
+	float:left;
+}
+.container .row .dots .dot{
+	float:left;
+	width: 10px;
+	height:10px;
+	margin: 0 auto;
+	margin-top: 30px;
+	border-radius: 50%;
+	background-color: rgb(227,125,30);
+}
+.container .row .device_content{
+	padding-left:10px;
+	margin-left:10px;
+	width:80%;
+	float:left;
+	font-size: 16px;
+	color: rgb(255,255,255);
+}
+h3,p{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+p{
+	color: rgb(82,82,82);
+}
+.container .row .prev{
+	width:10%;
+	float:right;
+	margin-top: 22px;
+}
+.container .row .prev img{
+	
+}
+
+/*header part*/
+.header{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:60px;
+	line-height: 60px;
+	background-color:rgb(229,137,32);
+}
+.header .back{
+	float:left;
+	padding: 10px 10px;
+}
+.header .setting{
+	display:block;
+	height:40px;
+	line-height:35px;
+	margin:10px 10px;
+	border-radius: 6px;
+	border: 1px solid rgb(255,255,255);
+	background-color: rgb(227,125,30);
+	color: rgb(255,255,255);
+	float:right;
+	padding:0.2em 1.1em;
+	font-size: 1.2em;
+}
+.header h1{
+	position: absolute;
+	top:0;
+	left:0;
+	width: 100%;
+	display:block;
+	text-align:center;
+	font-size:1.8em;
+	line-height: 60px;
+	color: rgb(255,255,255);
+}
+
+
+.desc{
+	text-align:center;
+	font-size:1.2em;
+}
+.btn{
+	width:100%;
+}
+.btn button{
+	margin: 0 auto;
+	margin-top: 50px;
+	padding:0.5em 1.3em;
+	border-radius: 6px;
+	border: 1px solid rgb(227,125,30);
+	background: none;
+	color: rgb(255,255,255);
+	font-size:1.8em;
+}
+
+/* content part */
+.content{
+	width:100%;
+	margin-top: 60px;
+	position: relative;
+}
+.content .findme_word{
+	text-align: center;
+	padding-top: 2.8em;
+}
+.content .findme_word p{
+	font-size: 1.8em;
+	color: rgb(255,255,255);
+}
+.content .findme_word h1{
+	padding-top: 0.3em;
+	color: rgb(255,255,255);
+}
+.content .findme_pic .arrow_down{
+	margin:2em 0 0 0;
+}
+.content .findme_pic  .arrow_up{
+	margin:0;
+}
+.content .findme_pic .center_btn{
+	width: 100%;
+	text-align: center;
+}
+.content .findme_pic .center_btn .find_btn{
+	margin: 0 auto;
+	width:50%;
+}
+.find_btn .img_border{
+	display: inline-block;
+	border-radius:50%;
+	padding:0.2em;
+	border: 0.3em solid rgb(227,125,30);
+}
+.center_img{
+	display:inline-block;
+	padding:0em;
+	border-radius:50%;
+	background-image: url('../img/phone.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+canvas{
+	z-index: -9999;
+}
+.content .photo_input{
+	height: 3em;
+	margin-top: 8em;
+}
+.content .photo_input .photo_word{
+	display: inline-block;
+	font-size: 1.8em;
+	line-height: inherit;
+	color: rgb(118,118,118);
+}
+.content .photo_input input{
+	display: inline-block;
+	height: inherit;
+	background: none;
+	boder: 1px solid rgb(255,255,255);
+	border-radius: 6px;
+	margin-left: 0.5em;
+	color: rgb(227,125,30);
+}
+.content .photo_pic .photo_title{
+	display: block;
+	font-size: 1.8em;
+	line-height: 3em;
+	color: rgb(118,118,118);
+}
+.content .photo_pic .center_btn{
+	width: 100%;
+	text-align: center;
+}
+.content .photo_pic .center_btn .find_btn{
+	margin: 0 auto;
+	width:50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
