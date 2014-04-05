@@ -17,10 +17,11 @@ var ProximityUUID = "e2c56db5-dffb-48d2-b060-d0f5a71096e0";
 //var ProximityUUID = "00000000-0000-0000-0000-000000000000";
 
 var app = {
-	webView : null,
+	webView : {},
 	
     initialize: function() {
         this.bindEvents();
+        app.webView.isOpened = false;
     },
 
     bindEvents: function() {
@@ -44,14 +45,13 @@ var app = {
 	},
 	
 	visitWebPage : function(ibeacon){
-		if(ibeacon.proximityUUID == ProximityUUID){
-			if(ibeacon.proximity >= 2 && app.webView !== null){
-				//app.webView.close();
-				//app.webView = null;
-			}else if(ibeacon.proximity == 1){
+		if(ibeacon.proximityUUID.toLowerCase() == ProximityUUID){
+			if(ibeacon.proximity == 1 && !app.webView.isOpened){
 				app.webView = window.open('http://www.bcsphere.net/portal.php?mod=topic&topicid=2', '_blank', 'location=yes');
-				//app.webView = window.open('http://www.bcsphere.org/bcsphere-core-android', '_blank', 'location=no');
-				//webView = window.open('http://www.bcsphere.org/bcmeeting.html', '_blank', 'location=no');
+				app.webView.isOpened = true;
+				app.webView.addEventListener("exit", function(){
+					app.webView.isOpened = false;
+				});
 			}
 		}
 	},
