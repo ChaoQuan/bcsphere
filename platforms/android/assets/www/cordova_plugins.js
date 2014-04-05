@@ -13,7 +13,21 @@ module.exports = [
         "merges": [
             "navigator.bluetooth"
         ]
-    }
+    },    
+	{
+        "file": "plugins/org.apache.cordova.dialogs/www/notification.js",
+        "id": "org.apache.cordova.dialogs.notification",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.dialogs/www/android/notification.js",
+        "id": "org.apache.cordova.dialogs.notification_android",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
 ];
 module.exports.metadata = 
 // TOP OF METADATA

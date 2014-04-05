@@ -19,4 +19,7 @@
     <feature name="BCBluetooth">
         <param name="android-package" value="org.bcsphere.bluetooth.BCBluetooth" />
     </feature>
+	<feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
 </widget>
