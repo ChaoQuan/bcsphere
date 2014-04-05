@@ -41,7 +41,7 @@ var app = {
 			URL = "../bcautotest/index.html";
 		}else if(app.device.deviceName == "iBeacon"){
 			URL = "../bcibeacon/index.html";
-		}else if(app.device.deviceName == "bcsocket"){
+		}else if(app.device.deviceName == "BCSocket"){
 			URL = "../bcsocket/index.html";
 		}else if(app.device.deviceName == "O-Click"){
 			URL = "../bcfindme/index.html";
