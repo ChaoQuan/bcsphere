@@ -38,11 +38,11 @@ var app = {
 		BC.Bluetooth.StopScan();
 		var URL = null;
 		if(app.device.deviceName == "SimpleBLEPeripheral"){
-			URL = "file:///android_asset/bcautotest/index.html";
+			URL = "../bcautotest/index.html";
 		}else if(app.device.deviceName == "iBeacon"){
-			URL = "file:///android_asset/bcibeacon/index.html";
+			URL = "../bcibeacon/index.html";
 		}else if(app.device.deviceName == "bcsocket"){
-			URL = "file:///android_asset/bcsocket/index.html";
+			URL = "../bcsocket/index.html";
 		}
 		if(URL !== null){
 			app.showLoader("Loading App...");
